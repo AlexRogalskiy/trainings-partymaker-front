@@ -1,0 +1,51 @@
+<form [formGroup]="form" style="width: 100%">
+    <!--<label [attr.for]="formField.key" class="example-label mat-body-strong">   {{formField.label}}  </label>-->
+
+    <ng-container [ngSwitch]="formField.uiType">
+        <section class="checkbox-section" *ngSwitchCase="'boolean'">
+            <mat-checkbox [formControlName]="formField.key"
+                          [id]="formField.key" type="formField.type" [value]="formField.value" [checked]="formField.value" [required]="formField.required" > {{formField.label}} </mat-checkbox>
+        </section>
+        <mat-form-field appearance="standard"  style="width: 100%" *ngSwitchCase="'string'">
+            <mat-label> {{formField.label}} </mat-label>
+            <input matInput  [formControlName]="formField.key"
+                   [id]="formField.key" [type]="formField.type" [value]="formField.value" [required]="formField.required">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="textarea_backdrop" style="width: 100%" *ngSwitchCase="'textarea'">
+            <mat-label>{{formField.label}}</mat-label>
+            <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" [mat-autosize]="true" matInput type="text" [formControlName]="formField.key"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="standard" style="width: 100%" *ngSwitchCase="'number'">
+            <mat-label>{{formField.label}}</mat-label>
+            <input matInput [formControlName]="formField.key" [id]="formField.key" [type]="formField.type" [value]="formField.value" [required]="formField.required">
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" style="width: 100%"  *ngSwitchCase="'select'">
+            <mat-label>{{formField.label}}</mat-label>
+            <mat-select [formControlName]="formField.key" [required]="formField.required">
+                <mat-option *ngFor="let option of formField.options" [value]="option.value" matTooltip="{{option.label}}">
+                    {{option.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <span *ngSwitchCase="'long'">
+                <h5>{{formField.label}} : {{formField.value}}</h5>
+            </span>
+
+        <mat-form-field appearance="standard" style="width: 100%" *ngSwitchCase="'date'">
+            <mat-label>{{formField.label}}</mat-label>
+            <input matInput [formControlName]="formField.key" [id]="formField.key" [type]="formField.type" [value]="formField.value">
+        </mat-form-field>
+        <!--            <div *ngSwitchCase="'array'">-->
+        <!--                <h3 *ngIf="this.nestedArrayLength > 0">{{formField.label}}</h3>-->
+        <!--                <div *ngFor="let element of formField.value">-->
+        <!--                    <app-show-request [element]="element" [isDisabled]="true" (nestedArrayLength)="this.checkLength($event)"></app-show-request>-->
+        <!--                </div>-->
+        <!--            </div>-->
+    </ng-container>
+</form>
