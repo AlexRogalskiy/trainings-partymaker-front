@@ -1,1 +1,10 @@
-<p>custom-task works!</p>
+<ng-container *ngIf="showForm">
+  <app-dynamic-form-view
+    *ngIf="true"
+    [formFields]="this.formFields"
+    [id]="this.id"
+  >
+  </app-dynamic-form-view>
+
+</ng-container>
+<button mat-raised-button class="main-button-container" style="float: right; margin-bottom: 15px" [disabled]="formInvalid" (click)="submitTask()">Подтвердить</button>

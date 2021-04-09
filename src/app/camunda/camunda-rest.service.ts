@@ -6,7 +6,7 @@ import {SERVER_API_URL} from '../app.contstants';
 @Injectable({providedIn: 'root'})
 export class CamundaRestService {
 
-  private camundaEngineUrl = SERVER_API_URL + '/engine-rest/task';
+  private camundaEngineUrl =  SERVER_API_URL + '/engine-rest/task';
 
 
   constructor(
@@ -15,26 +15,26 @@ export class CamundaRestService {
   }
 
   getProcess(processDefinitionId: string): Observable<any> {
-    return this.http.get<any>(`${this.camundaEngineUrl}/${processDefinitionId}`);
+    return this.http.get<any>(`${this.camundaEngineUrl}/${processDefinitionId}`, {withCredentials: true});
   }
 
   getTask(taskId: string): Observable<any> {
-    return this.http.get<any>(`${this.camundaEngineUrl}/${taskId}`, {observe: 'response'});
+    return this.http.get<any>(`${this.camundaEngineUrl}/${taskId}`, {observe: 'response', withCredentials: true});
   }
 
   getTaskFormRendered(taskId: string): Observable<any> {
-    return this.http.get(`${this.camundaEngineUrl}/${taskId}/rendered-form`, {responseType: 'text', observe: 'response'});
+    return this.http.get(`${this.camundaEngineUrl}/${taskId}/rendered-form`, {responseType: 'text', observe: 'response', withCredentials: true});
   }
 
   getTaskFormVariables(taskId: string): Observable<any> {
-    return this.http.get<any>(`${this.camundaEngineUrl}/${taskId}/form-variables`, {observe: 'response'});
+    return this.http.get<any>(`${this.camundaEngineUrl}/${taskId}/form-variables`, {observe: 'response', withCredentials: true});
   }
 
   getTasks(): Observable<any> {
-    return this.http.get(`${this.camundaEngineUrl}/`);
+    return this.http.get(`${this.camundaEngineUrl}/`, {withCredentials: true});
   }
 
   submitTask(formToSubmit: any, taskId: string): Observable<any> {
-    return this.http.post(`${this.camundaEngineUrl}/${taskId}/submit-form`, formToSubmit, {observe: 'response'});
+    return this.http.post(`${this.camundaEngineUrl}/${taskId}/submit-form`, formToSubmit, {observe: 'response', withCredentials: true});
   }
 }

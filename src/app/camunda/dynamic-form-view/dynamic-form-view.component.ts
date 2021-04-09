@@ -12,7 +12,6 @@ import {DynamicFormService} from '../../dynamic-form.service';
   styleUrls: ['./dynamic-form-view.component.scss'],
 })
 export class DynamicFormViewComponent implements OnInit {
-  richViewKeys: string[] = [];
   @Input() formFields: FormField[] = [];
   @Input() task: Task = new Task();
   @Output() ready = new EventEmitter();

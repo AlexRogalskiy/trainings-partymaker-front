@@ -14,5 +14,6 @@ export class DynamicFormFieldComponent implements OnInit {
   @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

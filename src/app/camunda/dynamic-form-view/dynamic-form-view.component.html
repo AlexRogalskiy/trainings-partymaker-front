@@ -1,7 +1,5 @@
 <div class="example-form">
-    <form  [formGroup]="form">
-        <ng-container *ngFor="let formField of formFields" [ngSwitch]="formField.key">
-            <app-camunda-dynamic-form-field  [formField]="formField" *ngSwitchDefault  [form]="form"></app-camunda-dynamic-form-field>
-        </ng-container>
-    </form>
+  <ng-container *ngFor="let formField of formFields">
+    <app-camunda-dynamic-form-field  [formField]="formField"  [form]="form"></app-camunda-dynamic-form-field>
+  </ng-container>
 </div>

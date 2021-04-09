@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CamundaRestService} from '../camunda-rest.service';
 
 @Component({
@@ -8,6 +8,10 @@ import {CamundaRestService} from '../camunda-rest.service';
 })
 export class CustomTaskListComponent implements OnInit {
 
+  // dataSource = new MatTableDataSource();
+  // isready = false;
+  data: any[] = [];
+  displayedColumns: string[] = ['id', 'name', 'created'];
   constructor(
     private camundaRestService: CamundaRestService
   ) { }
@@ -17,10 +21,10 @@ export class CustomTaskListComponent implements OnInit {
   }
   getTasks(): void {
     this.camundaRestService.getTasks().subscribe({
-      next: response =>  {
-        if (response.ok) {
-          console.log(response.body);
-        }
+      next: response => {
+        this.data = response;
+        // this.dataSource.data = response;
+        // this.isready = true;
       }
     });
   }
